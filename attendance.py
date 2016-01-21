@@ -39,13 +39,13 @@ def main():
         headers = {'Authorization': 'Bearer ' + authkey}
         #initial reqeust to post grade
         r = requests.post(url=link, data=payload, headers=headers)
-        r = json.loads(r.text)
 
         #get the status url
+        r = json.loads(r.text)
         r = requests.get(r['url'])
-        r = json.loads(r.text);
 
         #keep checking until ist is no longer running
+        r = json.loads(r.text);
         while (r['workflow_state'] == 'running'):
             r = requests.get(r['url'])
             r = json.loads(r.text);
