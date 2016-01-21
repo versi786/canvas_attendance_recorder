@@ -7,6 +7,9 @@ class colors:
     RED = '\x1B[31m'
     ENDC = '\033[0m'
 
+CURSOR_UP_ONE = '\x1b[1A'
+ERASE_LINE = '\x1b[2K'
+
 classID = str(1299906)
 authKey = 'token.txt'
 
@@ -28,6 +31,9 @@ def main():
     while(True):
         #parse penn key and create request
         readline = sys.stdin.readline()
+
+        #remove personal information from screen so next student can not read
+        print (CURSOR_UP_ONE + ERASE_LINE + CURSOR_UP_ONE)
         if(readline.startswith('exit')):
             sys.exit(0)
         readline = readline.split('^');
