@@ -32,15 +32,19 @@ def main():
         #parse penn key and create request
         readline = sys.stdin.readline()
 
-        #remove personal information from screen so next student can not read
-        print (CURSOR_UP_ONE + ERASE_LINE + CURSOR_UP_ONE)
         if(readline.startswith('exit')):
             sys.exit(0)
-        readline = readline.split('^');
-        name = readline[1]
-        pennid = readline[0][8:-2]
-        pay = 'grade_data[sis_user_id:' + pennid.strip()
-        pay += '][posted_grade]'
+        #remove personal information from screen so next student can not read
+        print (CURSOR_UP_ONE + ERASE_LINE + CURSOR_UP_ONE)
+        try:
+            readline = readline.split('^');
+            name = readline[1]
+            pennid = readline[0][8:-2]
+            pay = 'grade_data[sis_user_id:' + pennid.strip()
+            pay += '][posted_grade]'
+        except:
+            print 'error parsing ID Card'
+            continue
         payload = {pay:1} #grade is set to 1 for completion
         headers = {'Authorization': 'Bearer ' + authkey}
         #initial reqeust to post grade
