@@ -36,6 +36,7 @@ def main():
             sys.exit(0)
         #remove personal information from screen so next student can not read
         print (CURSOR_UP_ONE + ERASE_LINE + CURSOR_UP_ONE)
+        print 'Processing...'
         try:
             readline = readline.split('^');
             name = readline[1]
@@ -60,6 +61,7 @@ def main():
             r = requests.get(r['url'])
             r = json.loads(r.text);
 
+        print (CURSOR_UP_ONE + ERASE_LINE + CURSOR_UP_ONE)
         #give meaningful message to student
         if(r['workflow_state'] == 'completed'):
             print (colors.GREEN + 'Attendance successfully recorded for: ' +
