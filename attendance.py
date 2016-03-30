@@ -44,7 +44,8 @@ def main():
             pay = 'grade_data[sis_user_id:' + pennid.strip()
             pay += '][posted_grade]'
         except:
-            print 'error parsing ID Card'
+            print (CURSOR_UP_ONE + ERASE_LINE + CURSOR_UP_ONE)
+            print 'error parsing ID card'
             continue
         payload = {pay:1} #grade is set to 1 for completion
         headers = {'Authorization': 'Bearer ' + authkey}
@@ -57,7 +58,8 @@ def main():
 
         #keep checking until ist is no longer running
         r = json.loads(r.text);
-        while (r['workflow_state'] == 'running'):
+        while (r['workflow_state'] == 'running' or r['workflow_state'] ==
+                'queued'):
             r = requests.get(r['url'])
             r = json.loads(r.text);
 
@@ -68,7 +70,7 @@ def main():
                 name + colors.ENDC)
         else:
             print (colors.RED + 'Error recording attendance for: ' + name +
-            colors. ENDC)
+                    colors. ENDC + ' work state: ' + r['workflow_state'])
 
 
 if __name__ == "__main__":
