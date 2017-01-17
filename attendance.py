@@ -10,7 +10,7 @@ class colors:
 CURSOR_UP_ONE = '\x1b[1A'
 ERASE_LINE = '\x1b[2K'
 
-classID = str(1299906)
+classID = 'class.txt'
 authKey = 'token.txt'
 
 def main():
