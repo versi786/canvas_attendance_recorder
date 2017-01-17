@@ -10,7 +10,7 @@ class colors:
 CURSOR_UP_ONE = '\x1b[1A'
 ERASE_LINE = '\x1b[2K'
 
-classID = 'class.txt'
+classFile = 'class.txt'
 authKey = 'token.txt'
 
 def main():
@@ -18,6 +18,9 @@ def main():
     if(len(sys.argv) != 2):
         print("Usage: python attendance.py <assignment id>")
         sys.exit(1)
+    # get the class
+    f = open(classFile, 'r')
+    classID = f.read().strip()
 
     # create post url
     link = sys.argv[1];
@@ -27,6 +30,9 @@ def main():
     # get the api key
     f = open(authKey, 'r')
     authkey = f.read().strip()
+
+
+
 
     while(True):
         #parse penn key and create request
